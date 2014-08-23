@@ -6,7 +6,7 @@
     <head> 
     	<!--------------------------------------------
         ThinkLikeGeek.com Tumblr-Verified Theme         
-        Version: 0.7000         
+        Version: 0.7000.4      
         Created By: http://google.com/+AdityaRamabadran  
         
         ----
@@ -21,24 +21,25 @@
         <script>
             var maintenance=false;
             if (maintenance){
+                mixpanel.track("Maintenance Status Loaded", {
+                   "maintenance": "true" 
+                });
                 console.log("ThinkLikeGeek Under Maintenance: TRUE (LOCKDOWN)");
-                mixpanel.track("Maintenance Stats Loaded",{"status":"true"})
                 window.location.replace("http://lifeofcode.tumblr.com/status?code=maintenance");
             }
             if (!maintenance){
+                 mixpanel.track("Maintenance Status Loaded", {
+                   "maintenance": "false" 
+                });
                 console.log("No Maintenance. Continue...")
-                mixpanel.track("Maintenance Stats Loaded",{"status":"false"})
             }
         </script>
         <title> {block:IndexPage} Think&middot;Like&middot;Geek - Where Technology Flourishes{/block:IndexPage}{block:TagPage} - {Tag}{/block:TagPage}{block:SearchPage} - {SearchQuery}{/block:SearchPage}{block:PostSummary} Tech - {PostSummary}{/block:PostSummary} - {Title}: "Think Smart, Like Tech, Geek Out"</title>
         <script src="https://apis.google.com/js/client.js?onload=doloader"></script><script language="Javascript" src="http://www.codehelper.io/api/ips/?js"></script>
-        <script>
-  var ipaddress=codehelper_ip.IP;
-  console.log("                                       IP ADDRESS   ");
-  console.log(ipaddress);
-  mixpanel.identify(ipaddress);
-</script>
+        <!----<meta name="twitter:card" content="summary"><meta name="twitter:site" content="@thinklikegeek"><meta name="twitter:title" content="'{block:PostSummary}{PostSummary}{/block:PostSummary}' from ThinkLikeGeek.com"><meta name="twitter:description" content="{block:PostSummary}{PostSummary}{/block:PostSummary} - All this and more is available at ThinkLikeGeek.com, the tech review center!"><meta name="twitter:creator" content="@thinklikegeek"><meta name="twitter:image:src" content="https://lh5.googleusercontent.com/-3bzi7HgKd0g/U_PwBcCFL1I/AAAAAAAAASY/eo2LskVtVwI/w1074-h604-no/a.jpeg">
         
+        <meta name="twitter:domain" content="">------>
+        <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@thinklikegeek"><meta name="twitter:title" content="{block:PostSummary}{PostSummary}{/block:PostSummary}"><meta name="twitter:description" content="&amp;amp;quot;{block:PostSummary}{PostSummary}{/block:PostSummary}&amp;amp;quot; and more is available from ThinkLikeGeek.com, the #1 tech review/article center!"><meta name="twitter:creator" content="@thinklikegeek"><meta name="twitter:image:src" content="http://thinklikegeek.com/brand.jpeg"><meta name="twitter:domain" content="{Permalink}">
         <link rel="shortcut icon" href="{Favicon}">
         <link rel="apple-touch-icon" href="{PortraitURL-128}" />
         <script>
@@ -49,11 +50,15 @@
  
   ga('create', 'UA-48011022-1', 'auto');
   ga('send', 'pageview');
-mixpanel.track("Google Analytics Loaded",{"id":'UA-48011022-1'});
+  mixpanel.track("Google Analytics Loaded", {
+    "UA-Identifier": 'UA-48011022-1',
+    "permalink": "{Permalink}"
+});
+
 </script>
 <!--Sharethis--><script type="text/javascript">var switchTo5x=false;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
+<!----- <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>---->
 <meta http-equiv="X-Frame-Options" content="SAMEORIGIN"> 
 <meta name="keywords" content="able,add,albert,auto,automated,automatically,automation,awesome,better,brain,cars,chat,control,controlled,cool,depend,devices,doors,easy,einstein,energy,exist,face,facebook,fast,feature,feet,food,forward,friend,gaming,gesture,getting,google,great,health,helps,holograms,holographic,home,human,incredible,instant,interface,isn’t,it’s,jul,july,just,let’s,lighting,like,live,look,look…,lot,lunch,machines,major,make,makes,met,mind,networking,photos,plus,popular,prototypes,race,really,remember,resolution,schoolmate,search,social,species,stay,super,tech,technology,tell,text,thermostats,think,thinklikegeek,thinklikegeek.com,time,touchscreens,tracking,trends,turns,using,video,voice,want,we’ll,year,you’ll,you’re,{block: TagPage}{Tag}{/block:TagPage},html,css,code,web,online,google,facebook,apple,microsoft,ios,iOS,android,samsung,galaxy,wearable,smart,techie,digital,television,telephone,phone,touchscreen,home,automation,internet,things,sensor,iphone,ipad,nexus,tracker,device,popular,credit,card,voice,search,assistant,IM,cars,automobile,instant,fitness,sickness,health,social,network,private,privacy,security,think,like,geek,smart,tech,out,awesome,photos,jpg,png,cyborgs,machine,machinery,wire,copper,metal,electronic,electricity,electronics,ipod,iwatch,apple watch,nikeprogramming,eductaion,worldclass,free,bitcoin,bit,byte,gigabyte,decentralized,currency,banking,internetwork,international,convert,transmit,transfer,data,public,update,feed,blog,samsung galaxy,droid,tablet,phone,huge,touchscreen,display,lens,video,zoom,camera,screen,button,power,energy,battery,storage,pinterest,thinklikegeek,com,www,ThinkLikeGeek" />
 
@@ -98,7 +103,10 @@ mixpanel.track("Google Analytics Loaded",{"id":'UA-48011022-1'});
 
   ga('create', 'UA-52488664-1', 'auto');
   ga('send', 'pageview');
-mixpanel.track("Google Analytics Loaded",{"id": 'UA-52488664-1'});
+mixpanel.track("Google Analytics Loaded", {
+    "UA-Identifier": 'UA-52488664-1',
+    "permalink": "{Permalink}"
+});
 </script>
 <style>.loader {
 	position: fixed;
@@ -232,10 +240,22 @@ for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElemen
 mixpanel.init("e6f1da4638702957ecfd6ec09b9cde13");</script><!-- end Mixpanel -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    var firsts=new Date();
+
+    
+</script>
 <script type="text/javascript">
 
 $(window).load(function() {
 	$(".loader").fadeOut("slow");
+	var seconds=new Date();
+	var deltadiff=Math.abs(seconds - firsts) / 1000;
+	mixpanel.track("Website Done Loading", {
+	    "seconds": deltadiff,
+	    "permalink": "{Permalink}",
+	    "date": new Date()
+	});
 });
 setInterval(function(){$(".loader").fadeOut("slow")}, 8000);
 
@@ -245,7 +265,23 @@ setInterval(function(){$(".loader").fadeOut("slow")}, 8000);
     <body>
     
 <div class="loader"><center>	{block:IfPortrait}<a href="/" class="portrait"><img src="{PortraitURL-128}" alt="{Title}"></a>{/block:IfPortrait}
-        	<h1 class="title"><a href="/">{Title}</a></h1><br><br><br><h1>LOADING....</h1><span id="loadpercent"></span><br><br><a href="http://thinklikegeek.com/ask">Problems loading? <b>Tell Us</b></a></center></div>
+        	<h1 class="title"><a href="/">{Title}</a></h1><br><br><br><h1>LOADING....</h1><span id="loadpercent"></span><!-- Go to www.addthis.com/dashboard to generate a new set of buttons -->
+<a href="https://api.addthis.com/oexchange/0.8/forward/facebook/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/facebook.png" border="0" alt="Facebook"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/twitter/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/twitter.png" border="0" alt="Twitter"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/google_plusone_share/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/google_plusone_share.png" border="0" alt="Google+"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/pinterest/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/pinterest.png" border="0" alt="Pinterest"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/wordpress/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/wordpress.png" border="0" alt="WordPress"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/stumbleupon/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/stumbleupon.png" border="0" alt="StumbleUpon"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/tumblr/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/tumblr.png" border="0" alt="Tumblr"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/myspace/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/myspace.png" border="0" alt="Myspace"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/reddit/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/reddit.png" border="0" alt="Reddit"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/blogger/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/blogger.png" border="0" alt="Blogger"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/digg/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/digg.png" border="0" alt="Digg"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/email/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/email.png" border="0" alt="Email"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/delicious/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/delicious.png" border="0" alt="Delicious"/></a>
+<a href="https://api.addthis.com/oexchange/0.8/forward/linkedin/offer?pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/linkedin.png" border="0" alt="LinkedIn"/></a>
+<a href="https://www.addthis.com/bookmark.php?source=tbx32nj-1.0&v=300&pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1" target="_blank"><img src="https://cache.addthiscdn.com/icons/v2/thumbs/32x32/addthis.png" border="0" alt="Addthis"/></a>
+<br><br><a href="http://thinklikegeek.com/ask">Problems loading? <b>Tell Us</b></a></center></div> 
     <script>
     var mixtitle=document.getElementsByTagName("title")[0].innerHTML; 
     mixpanel.track("Landed on Site",{
@@ -276,7 +312,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=799172816763125&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+    
+    mixpanel.track("APIs Loaded", {
+      "firstparty": "Facebook",
+    "src": '//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=799172816763125&version=v2.0',
+    "permalink": "{Permalink}",
+    "comment": "fb-root loaded, facebook-jssdk loaded"
+});
+</script>
 		<nav class="menu">
         	<div class="wrapper">
                 <h6 class="menu-title"><a href="/">{block:IfPortrait}<img src="{PortraitURL-64}" alt="{Title}"> {/block:IfPortrait}{Title}</a></h6>
@@ -314,6 +358,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         if (document.getElementById("tagname").innerHTML.indexOf("intuitivegadgets")!=-1){
             document.getElementById("tagname").innerHTML="Gadgets from the Intuit IAT Tech Library";
             document.getElementsByTagName("title")[0].innerHTML="ThinkLikeGeek - Intuit Gadget Library Reviews"
+            mixpanel.track("APIs Loaded", {
+      "firstparty": "ThinkLikeGeek",
+    "src": 'internal',
+    "permalink": "{Permalink}",
+    "comment":"/tagged/intuitivegadgets, Gadgets from IAT Intuit Tech Libary, page visited"
+});
             
             
         }
@@ -483,7 +533,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border:none;
     width:50%;
 }</style>
-
+<script language="Javascript" src="http://www.codehelper.io/api/ips/?js"></script>
+<script>
+  var ipaddress=codehelper_ip.IP;
+  console.log("                                       IP ADDRESS   ");
+  console.log(ipaddress);
+  mixpanel.identify(ipaddress);
+   mixpanel.track("APIs Loaded", {
+      "firstparty": "CodeHelper_IP",
+    "src": 'http://www.codehelper.io/api/ips/?js',
+    "permalink": "{Permalink}",
+    "comment": "IP Address: "+ipaddress
+});
+</script>
 <!--Permalinker Goo.gl AJAX/JQuery script---->
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -544,6 +606,14 @@ function makeRequest() {
     console.log("permalinking script done...")
 </script>
 <script src="https://apis.google.com/js/client.js?onload=doloader"></script>
+<script>
+     mixpanel.track("APIs Loaded", {
+      "firstparty": "Google",
+    "src": 'https://apis.google.com/js/client.js?onload=doloader',
+    "permalink": "{Permalink}",
+    "comment": "loaded"
+});
+</script>
 
 <!--end permalinker----->
    
@@ -594,10 +664,21 @@ function makeRequest() {
 <br>
 <div class="fb-like" data-href="http://thinklikegeek.com" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div><br /><br>
 <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-hashtags="thinklikegeek">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><br><br><!-- Place this tag where you want the widget to render. -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    mixpanel.track("APIs Loaded", {
+      "firstparty": "Twitter",
+    "src": '://platform.twitter.com/widgets.js',
+    "permalink": "{Permalink}",
+    "comment": "loaded"
+});
+    
+</script><br><br><!-- Place this tag where you want the widget to render. -->
 <a href="https://plus.google.com/113300104562798590083?rel=author">Check the author out on Google+</a>
 <div class="g-page" data-width="443" data-href="//plus.google.com/u/0/106797052608079183098" data-rel="publisher"></div><br>
 <a href="http://tinyurl.com/tlgmail">Join the mailing list!</a> <br>
+<!---- Mixpanel Partner Badge (175,000 Data Points) ----->
+<a href="https://mixpanel.com/f/partner"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_light.png" alt="Mobile Analytics" /></a>
+<br>
 
 <!-- Place this tag after the last widget tag. -->
 <script type="text/javascript">
@@ -606,6 +687,12 @@ function makeRequest() {
     po.src = 'https://apis.google.com/js/platform.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
+  mixpanel.track("APIs Loaded", {
+      "firstparty": "Google",
+    "src": 'https://apis.google.com/js/platform.js',
+    "permalink": "{Permalink}",
+    "comment": "pre-added text: Place this tag after the last widget tag"
+});
 </script><!-- Place this tag where you want the +1 button to render. -->
 <div class="g-plusone" data-size="tall" data-href="http://thinklikegeek.com"></div><!-- Place this tag where you want the share button to render. --><br>
 <div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60"></div><br><!--<button
@@ -715,6 +802,9 @@ function makeRequest() {
         <script>
             {block:PreviousPage}function leftArrowPressed() {window.location = '{PreviousPage}';}{/block:PreviousPage}
             {block:NextPage}function rightArrowPressed() {window.location = '{NextPage}';}{/block:NextPage}
+            function sharePressed() {window.location = 'https://www.addthis.com/bookmark.php?v=300&pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1';}
+            function fbPressed(){window.location='https://www.facebook.com/sharer/sharer.php?u={Permalink}&display=popup&ref=plugin';}
+            function twitPressed(){window.location='https://twitter.com/intent/tweet?text=Think%C2%B7Like%C2%B7Geek+-+Where+Technology+Flourishes+-+ThinkLikeGeek%3A+%27Think+Smart%2C+Like+Tech%2C+Geek+Out%27&url={Permalink}&related=';}
             document.onkeydown = function(evt) {
                 evt = evt || window.event;
                 switch (evt.keyCode) {
@@ -724,6 +814,16 @@ function makeRequest() {
                     {block:NextPage}case 39:
                         rightArrowPressed();
                         break;{/block:NextPage}
+                        case 83:
+                            sharePressed();
+                            break;
+                        case 70:
+                            fbPressed();
+                            break;
+                        case 84:
+                            twitPressed();
+                            break;
+                        
                 }
             };
         </script>
@@ -798,7 +898,7 @@ qacct:"p-wjhb2ZNhanGe9"
 </div>
 </noscript>
 <!-- End Quantcast tag -->
-        <!--Sharethis--><script type="text/javascript">//stLight.options({publisher: "57f2543b-acae-4581-906e-b952c27e71b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+        <!--Sharethis--><script type="text/javascript">stLight.options({publisher: "57f2543b-acae-4581-906e-b952c27e71b6", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script>var isiPad = navigator.userAgent.match(/iPad/i) != null;
@@ -814,7 +914,7 @@ qacct:"p-wjhb2ZNhanGe9"
 
 </script>
 <script>
-//var options={ "publisher": "57f2543b-acae-4581-906e-b952c27e71b6", "logo": { "visible": true, "url": "http://thinklikegeek.com", "img": "http://31.media.tumblr.com/avatar_e182f70761c4_128.png", "height": 45}, "ad": { "visible": false, "openDelay": "5", "closeDelay": "0"}, "livestream": { "domain": "", "type": "sharethis", "customColors": { "widgetBackgroundColor": "#707070", "articleLinkColor": "#ffffff"}}, "ticker": { "visible": false, "domain": "", "title": "", "type": "sharethis", "customColors": { "widgetBackgroundColor": "#707070", "articleLinkColor": "#FFFFFF"}}, "facebook": { "visible": false, "profile": "sharethis"}, "fblike": { "visible": true, "url": ""}, "twitter": { "visible": false, "user": "sharethis"}, "twfollow": { "visible": false}, "custom": [{ "visible": true, "title": "Email This!", "url": "mailto: someone@example.com?body=\"I love ThinkLikeGeek,  a new tech site!\"&subject=A Cool,  New Tech Site", "img": "http://icons.iconarchive.com/icons/igh0zt/ios7-style-metro-ui/256/MetroUI-Other-Mail-icon.png", "popup": false, "popupCustom": { "width": 300, "height": 250}}, { "visible": false, "title": "Custom 2", "url": "", "img": "", "popup": false, "popupCustom": { "width": 300, "height": 250}}, { "visible": false, "title": "Custom 3", "url": "", "img": "", "popup": false, "popupCustom": { "width": 300, "height": 250}}], "chicklets": { "items": ["facebook", "twitter", "linkedin", "googleplus", "tumblr", "evernote", "reddit", "pinterest", "blogger", "email", "sharethis"]}, "background": "#acacac", "color": "#555555", "shadow": "solid"}; 
+// var options={ "publisher": "57f2543b-acae-4581-906e-b952c27e71b6", "logo": { "visible": true, "url": "http://thinklikegeek.com", "img": "http://31.media.tumblr.com/avatar_e182f70761c4_128.png", "height": 45}, "ad": { "visible": false, "openDelay": "5", "closeDelay": "0"}, "livestream": { "domain": "", "type": "sharethis", "customColors": { "widgetBackgroundColor": "#707070", "articleLinkColor": "#ffffff"}}, "ticker": { "visible": false, "domain": "", "title": "", "type": "sharethis", "customColors": { "widgetBackgroundColor": "#707070", "articleLinkColor": "#FFFFFF"}}, "facebook": { "visible": false, "profile": "sharethis"}, "fblike": { "visible": true, "url": ""}, "twitter": { "visible": false, "user": "sharethis"}, "twfollow": { "visible": false}, "custom": [{ "visible": true, "title": "Email This!", "url": "mailto: someone@example.com?body=\"I love ThinkLikeGeek,  a new tech site!\"&subject=A Cool,  New Tech Site", "img": "http://icons.iconarchive.com/icons/igh0zt/ios7-style-metro-ui/256/MetroUI-Other-Mail-icon.png", "popup": false, "popupCustom": { "width": 300, "height": 250}}, { "visible": false, "title": "Custom 2", "url": "", "img": "", "popup": false, "popupCustom": { "width": 300, "height": 250}}, { "visible": false, "title": "Custom 3", "url": "", "img": "", "popup": false, "popupCustom": { "width": 300, "height": 250}}], "chicklets": { "items": ["facebook", "twitter", "linkedin", "googleplus", "tumblr", "evernote", "reddit", "pinterest", "blogger", "email", "sharethis"]}, "background": "#acacac", "color": "#555555", "shadow": "solid"}; 
 //var st_bar_widget;
 if (isiPhone() || isiPad) {
     console.log("DEV: client on mobile/touchscreen device ( http://thinklikegeek.com/#ADC.dev.mobile )");
@@ -832,18 +932,18 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-48011022-1', 'auto');
 ga('require', 'displayfeatures');
 ga('send', 'pageview');
-
-mixpanel.track("Google Analytics Loaded",{"id":'UA-48011022-1'});
+mixpanel.track("Google Analytics Loaded", {
+    "UA-Identifier": 'UA-48011022-1',
+    "permalink": "{Permalink}",
+    "comment": "added line: ga(require, displayfeatures);"
+});
 </script>
 <script type="text/javascript">
   (function() {
    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
    po.src = 'https://apis.google.com/js/client:plusone.js';
    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  
  })();
- 
- mixpanel.track("apis.google.com/js: Plusone.js Loaded");
 </script>
 <!-- Quantcast Tag -->
 <script type="text/javascript">
@@ -861,7 +961,11 @@ scpt.parentNode.insertBefore(elem, scpt);
 _qevents.push({
 qacct:"p-wjhb2ZNhanGe9"
 });
-mixpanel.track("Quantcast Analytics Loaded");
+mixpanel.track("Quantcast Analytics Loaded", {
+    "QACCT-Identifier": 'p-wjhb2ZNhanGe9',
+    "permalink": "{Permalink}",
+    "comment": "quantcast =MEASURE= analytics at quantcast.com "
+});
 </script>
 
 <noscript>
