@@ -19,6 +19,7 @@
         Visit us at http://thinklikegeek.com, and visit the founders at http://aditya.thinklikegeek.com now!
         --------------------------------------------->
         <script>
+            var cl=window.location.href;
             var maintenance=false;
             if (maintenance){
                 mixpanel.track("Maintenance Status Loaded", {
@@ -105,7 +106,7 @@
   ga('send', 'pageview');
 mixpanel.track("Google Analytics Loaded", {
     "UA-Identifier": 'UA-52488664-1',
-    "permalink": "{Permalink}"
+    "permalink": cl
 });
 </script>
 <style>.loader {
@@ -253,7 +254,7 @@ $(window).load(function() {
 	var deltadiff=Math.abs(seconds - firsts) / 1000;
 	mixpanel.track("Website Done Loading", {
 	    "seconds": deltadiff,
-	    "permalink": "{Permalink}",
+	    "permalink": cl,
 	    "date": new Date()
 	});
 });
@@ -285,7 +286,7 @@ setInterval(function(){$(".loader").fadeOut("slow")}, 8000);
     <script>
     var mixtitle=document.getElementsByTagName("title")[0].innerHTML; 
     mixpanel.track("Landed on Site",{
-        "link": "{Permalink}",
+        "link": cl,
         "title": mixtitle
     });</script>
     <!--Google Tag Management--><!-- Google Tag Manager -->
@@ -317,7 +318,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     mixpanel.track("APIs Loaded", {
       "firstparty": "Facebook",
     "src": '//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=799172816763125&version=v2.0',
-    "permalink": "{Permalink}",
+    "permalink": cl,
     "comment": "fb-root loaded, facebook-jssdk loaded"
 });
 </script>
@@ -361,7 +362,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             mixpanel.track("APIs Loaded", {
       "firstparty": "ThinkLikeGeek",
     "src": 'internal',
-    "permalink": "{Permalink}",
+    "permalink": cl,
     "comment":"/tagged/intuitivegadgets, Gadgets from IAT Intuit Tech Libary, page visited"
 });
             
@@ -542,7 +543,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
    mixpanel.track("APIs Loaded", {
       "firstparty": "CodeHelper_IP",
     "src": 'http://www.codehelper.io/api/ips/?js',
-    "permalink": "{Permalink}",
+    "permalink": cl,
     "comment": "IP Address: "+ipaddress
 });
 </script>
@@ -610,7 +611,7 @@ function makeRequest() {
      mixpanel.track("APIs Loaded", {
       "firstparty": "Google",
     "src": 'https://apis.google.com/js/client.js?onload=doloader',
-    "permalink": "{Permalink}",
+    "permalink": cl,
     "comment": "loaded"
 });
 </script>
@@ -668,7 +669,7 @@ function makeRequest() {
     mixpanel.track("APIs Loaded", {
       "firstparty": "Twitter",
     "src": '://platform.twitter.com/widgets.js',
-    "permalink": "{Permalink}",
+    "permalink": cl,
     "comment": "loaded"
 });
     
@@ -690,7 +691,7 @@ function makeRequest() {
   mixpanel.track("APIs Loaded", {
       "firstparty": "Google",
     "src": 'https://apis.google.com/js/platform.js',
-    "permalink": "{Permalink}",
+    "permalink": cl,
     "comment": "pre-added text: Place this tag after the last widget tag"
 });
 </script><!-- Place this tag where you want the +1 button to render. -->
@@ -802,9 +803,11 @@ function makeRequest() {
         <script>
             {block:PreviousPage}function leftArrowPressed() {window.location = '{PreviousPage}';}{/block:PreviousPage}
             {block:NextPage}function rightArrowPressed() {window.location = '{NextPage}';}{/block:NextPage}
-            function sharePressed() {window.location = 'https://www.addthis.com/bookmark.php?v=300&pco=tbxnj-1.0&url=http%3A%2F%2Fthinklikegeek.com%2F&pubid=ra-52f430371f21ad6b&ct=1';}
-            function fbPressed(){window.location='https://www.facebook.com/sharer/sharer.php?u={Permalink}&display=popup&ref=plugin';}
-            function twitPressed(){window.location='https://twitter.com/intent/tweet?text=Think%C2%B7Like%C2%B7Geek+-+Where+Technology+Flourishes+-+ThinkLikeGeek%3A+%27Think+Smart%2C+Like+Tech%2C+Geek+Out%27&url={Permalink}&related=';}
+            function sharePressed() {window.location = 'https://www.addthis.com/bookmark.php?v=300&pco=tbxnj-1.0&url='+cl+'&pubid=ra-52f430371f21ad6b&ct=1';}
+         
+            function fbPressed(){window.location='https://www.facebook.com/sharer/sharer.php?u='+cl+'&display=popup&ref=plugin';}
+            function twitPressed(){window.location='https://twitter.com/intent/tweet?text=Think%C2%B7Like%C2%B7Geek+-+Where+Technology+Flourishes+-+ThinkLikeGeek%3A+%27Think+Smart%2C+Like+Tech%2C+Geek+Out%27&url='+cl+'&related=';}
+          
             document.onkeydown = function(evt) {
                 evt = evt || window.event;
                 switch (evt.keyCode) {
@@ -814,7 +817,9 @@ function makeRequest() {
                     {block:NextPage}case 39:
                         rightArrowPressed();
                         break;{/block:NextPage}
+                       
                         case 83:
+                            console.log("Permalink1: {Permalink}");
                             sharePressed();
                             break;
                         case 70:
@@ -824,8 +829,10 @@ function makeRequest() {
                             twitPressed();
                             break;
                         
+                        
                 }
             };
+            console.log("PERMALINK2: {Permalink}");
         </script>
         {/block:IndexPage}
         {block:PermalinkPagination}
