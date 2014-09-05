@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<title>Countdown to ThinkLikeGeek.com's new stuff!</title>
+	<meta name="description" content="A more functional version of my Apple-Style Flip Counter." />
+	<meta name="keywords" content="upcoming, coming, soon, thinklikegeek, tech, gadgets, countdown, freedom, think, like, geek, technology" />
+	<meta name="author" content="Aditya Ramabadran" />
+
+	<!-- My flip counter script, REQUIRED -->
+	<script type="text/javascript" src="js/flipcounter.js"></script>
+	<!-- Style sheet for the counter, REQUIRED -->
+	<link rel="stylesheet" type="text/css" href="css/counter.css" />
+	
+
+	<!-- NOT REQUIRED FOR COUNTER TO FUNCTION, JUST FOR DEMO PURPOSES -->
+	<!-- jQuery from Google CDN, NOT REQUIRED for the counter itself -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<!-- jQueryUI from Google CDN, used only for the fancy demo controls, NOT REQUIRED for the counter itself -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
+	<!-- Style sheet for the jQueryUI controls, NOT REQUIRED for the counter itself -->
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/vader/jquery-ui.css" />
+	<!-- Style sheet for the demo page, NOT REQUIRED for the counter itself -->
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+
+</head>
+
+<body>
+
+	<center><h2>When is new stuff coming to ThinkLikeGeek?</h2><br><br><br></center>
+	<div id="wrapper"><h1>Hours: </h1><div id="hours" class="flip-counter"><br><br><br><br><br><br><br><br><h1>Minutes: </h1><div id="minutes" class="flip-counter"></div><br><br><br><br><br><br><br><br><h1>Seconds: </h1><div id="seconds" class="flip-counter"><br><br><br><br><br><br><br><br><h1>Milliseconds: </h1><div id="mseconds" class="flip-counter"> </div>
+
+	</ul>
+
+	<script type="text/javascript">
+	//<![CDATA[
+	$(function(){
+        //alert
+        setInterval(function(){alert("It doesn't matter WHEN the new stuff is coming, it matters WHAT it's going to be! Find that out now:"); window.location.replace("http://thinklikegeek.com/upcoming");},6000)
+		//rand
+        var sHours=Math.floor((Math.random() * 80) + 1); 
+        var sMins=Math.floor((Math.random() * 59) + 1); 
+        var sSec=Math.floor((Math.random() * 59) + 1); 
+        var sMsec=Math.floor((Math.random() * 999) + 1); 
+		// Initialize a new counter
+		var myCounter = new flipCounter('hours', {value: sHours, inc:-1, pace:3600000, auto:true});
+        var myCounter = new flipCounter('minutes', {value: sMins, inc:-1, pace:60000, auto:true});
+        var myCounter = new flipCounter('seconds', {value: sSec, inc:-1, pace:1000, auto:true});
+        var myCounter = new flipCounter('mseconds', {value: sMsec, inc:-200, pace:200, auto:true});
+		/**
+		 * Demo controls
+		 */
+		
+		var smartInc = 0;
+		
+		// Increment
+		$("#inc_slider").slider({
+			range: "max",
+			value: 123,
+			min: 1,
+			max: 1000,
+			slide: function( event, ui ) {
+				myCounter.setIncrement(ui.value);
+				$("#inc_value").text(ui.value);
+			}
+		});
+		
+		// Pace
+		$("#pace_slider").slider({
+			range: "max",
+			value: 600,
+			min: 100,
+			max: 2000,
+			step: 100,
+			slide: function( event, ui ) {
+				myCounter.setPace(ui.value);
+				$("#pace_value").text(ui.value);
+			}
+		});
+		
+		// Auto-increment
+		$("#auto_toggle").buttonset();
+		$("input[name=auto]").change(function(){
+			if ($("#auto1:checked").length == 1){
+				$("#counter_step").button({disabled: true});
+				$(".auto_off_controls").hide();
+				$(".auto_on_controls").show();
+				
+				myCounter.setPace($("#pace_slider").slider("value"));
+				myCounter.setIncrement($("#inc_slider").slider("value"));
+				myCounter.setAuto(true);
+			}
+			else{
+				$("#counter_step").button({disabled: false});
+				$(".auto_off_controls").show();
+				$(".auto_on_controls").hide();
+				$("#add_sub").buttonset();
+				$("#set_val, #inc_to, #smart").button();
+				myCounter.setAuto(false).stop();
+			}
+		});
+		$("#counter_step").button({disabled: true});
+		$("#counter_step").button().click(function(){
+			myCounter.step();
+			return false;
+		});
+		
+		// Addition/Subtraction
+		$("#add").click(function(){
+			myCounter.add(567);
+			return false;
+		});
+		$("#sub").click(function(){
+			myCounter.subtract(567);
+			return false;
+		});
+		
+		// Set value
+		$("#set_val").click(function(){
+			myCounter.setValue(12345);
+			return false;
+		});
+		
+		// Increment to
+		$("#inc_to").click(function(){
+			myCounter.incrementTo(12345);
+			return false;
+		});
+		
+		// Get value
+		$("#smart").click(function(){
+			var steps = [12345, 17, 4, 533];
+
+			if (smartInc < 4) runTest();
+			
+			function runTest(){
+				var newVal = myCounter.getValue() + steps[smartInc];
+				myCounter.incrementTo(newVal, 10, 600);
+				smartInc++;
+				if (smartInc < 4) setTimeout(runTest, 10000);
+			}
+			$(this).button("disable");
+			return false;
+		});
+		
+		// Expand help
+		$("a.expand").click(function(){
+			$(this).parent().children(".toggle").slideToggle(200);
+			return false;
+		});
+
+	});
+
+	//]]>
+	</script>
+</body>
+
+</html>
